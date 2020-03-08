@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Original message: "{{ message }}"</p>
+    <input v-model="message" />
     <p>Computed reversed message: "{{ reversedMessage }}"</p>
   </div>
 </template>
@@ -14,10 +14,15 @@ export default {
     }
   },
   computed: {
-    // 计算属性的 getter
-    reversedMessage: function () {
-      // `this` 指向 vm 实例
-      return this.message.split('').reverse().join('')
+    reversedMessage: {
+      // getter
+      get: function () {
+        return this.message.split('').reverse().join('')
+      },
+      // setter
+      set: function (newValue) {
+        console.log('set:' + newValue)
+      }
     }
   }
 }
