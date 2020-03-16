@@ -21,7 +21,13 @@ export default {
       },
       // setter
       set: function (newValue) {
-        console.log('set:' + newValue)
+        this.$axios.get('http://192.168.1.31:8085/rest/alarm/getAlarmTypeList')
+          .then(function (response) {
+            console.log(response)
+          })
+          .catch(function (error) {
+            console.log('Error! Could not reach the API. :' + error)
+          })
       }
     }
   }
